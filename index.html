@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock CricketAdda</title>
+    <style>
+        body { background-color: #f0f2f5; font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 10px; }
+        .ad-box { width: 100%; max-width: 600px; height: 250px; background: #fff; border: 3px dashed #ccc; display: flex; justify-content: center; align-items: center; margin: 15px 0; color: #999; font-size: 24px; font-weight: bold; border-radius: 12px; }
+        .container { width: 90%; max-width: 500px; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-align: center; }
+        #timer-display { display: none; font-size: 60px; font-weight: 800; color: #e74c3c; margin: 20px 0; }
+        .btn { background-color: #1a73e8; color: white; padding: 20px; border: none; border-radius: 50px; font-size: 22px; font-weight: bold; cursor: pointer; width: 100%; }
+        #code-display { display: none; background: #f8f9fa; padding: 20px; border: 2px solid #28a745; border-radius: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="ad-box">AD 1 HERE</div>
+    <div class="container">
+        <div id="msg" style="font-size:20px; font-weight:600; margin-bottom:20px;">Click Continue to get Unlock Code</div>
+        <button id="cont-btn" class="btn" onclick="startTimer()">CONTINUE</button>
+        <div id="timer-display"><span id="sec">8</span>s</div>
+        
+        <div id="code-display">
+            <h3 style="color:#28a745; margin:0;">YOUR UNLOCK CODE:</h3>
+            <h1 id="dynamic-code" style="font-size:40px; margin:10px 0; letter-spacing:5px;">----</h1>
+            <p style="color:#666; font-size:12px;">Copy this code and enter in the app.</p>
+        </div>
+    </div>
+    <div class="ad-box">AD 2 HERE</div>
+
+    <script>
+        function startTimer() {
+            document.getElementById('cont-btn').style.display = 'none';
+            document.getElementById('timer-display').style.display = 'block';
+            let count = 8;
+            const counter = setInterval(() => {
+                count--;
+                document.getElementById('sec').innerText = count;
+                if (count <= 0) {
+                    clearInterval(counter);
+                    document.getElementById('timer-display').style.display = 'none';
+                    document.getElementById('code-display').style.display = 'block';
+                    document.getElementById('msg').innerHTML = "Ready! Use the code below.";
+                    generate12HrCode();
+                }
+            }, 1000);
+        }
+
+        function generate12HrCode() {
+            // Har 12 ghante mein badalne wala code (Date based)
+            const now = new Date();
+            const dateStr = now.getFullYear() + "" + (now.getMonth() + 1) + "" + now.getDate();
+            const period = Math.floor(now.getHours() / 12); // 0 (AM) or 1 (PM)
+            const finalCode = "CA" + dateStr.slice(-3) + period; 
+            document.getElementById('dynamic-code').innerText = finalCode;
+        }
+    </script>
+</body>
+</html>
