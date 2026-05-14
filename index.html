@@ -3,57 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlock CricketAdda</title>
+    <title>Wait for It | Dhamo Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #f0f2f5; font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 10px; }
-        .ad-box { width: 100%; max-width: 600px; height: 250px; background: #fff; border: 3px dashed #ccc; display: flex; justify-content: center; align-items: center; margin: 15px 0; color: #999; font-size: 24px; font-weight: bold; border-radius: 12px; }
-        .container { width: 90%; max-width: 500px; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); text-align: center; }
-        #timer-display { display: none; font-size: 60px; font-weight: 800; color: #e74c3c; margin: 20px 0; }
-        .btn { background-color: #1a73e8; color: white; padding: 20px; border: none; border-radius: 50px; font-size: 22px; font-weight: bold; cursor: pointer; width: 100%; }
-        #code-display { display: none; background: #f8f9fa; padding: 20px; border: 2px solid #28a745; border-radius: 10px; margin-top: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Poppins:wght@400;600&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Animated Glowing Background */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #330000 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* Floating Particles Animation */
+        .particle {
+            position: absolute;
+            background: rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: move 10s linear infinite;
+        }
+
+        @keyframes move {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-10vh); }
+        }
+
+        .content-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: rgba(15, 15, 15, 0.9);
+            border: 2px solid #ff1a1a;
+            border-radius: 40px;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+            max-width: 380px;
+            width: 90%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: #ff1a1a;
+            text-shadow: 0 0 15px #ff1a1a;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .message {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .highlight {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-color: #ff1a1a;
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            color: #555;
+            letter-spacing: 3px;
+        }
     </style>
 </head>
 <body>
-    <div class="ad-box">AD 1 HERE</div>
-    <div class="container">
-        <div id="msg" style="font-size:20px; font-weight:600; margin-bottom:20px;">Click Continue to get Unlock Code</div>
-        <button id="cont-btn" class="btn" onclick="startTimer()">CONTINUE</button>
-        <div id="timer-display"><span id="sec">8</span>s</div>
-        
-        <div id="code-display">
-            <h3 style="color:#28a745; margin:0;">YOUR UNLOCK CODE:</h3>
-            <h1 id="dynamic-code" style="font-size:40px; margin:10px 0; letter-spacing:5px;">----</h1>
-            <p style="color:#666; font-size:12px;">Copy this code and enter in the app.</p>
-        </div>
-    </div>
-    <div class="ad-box">AD 2 HERE</div>
 
+    <div class="bg-glow"></div>
+    
     <script>
-        function startTimer() {
-            document.getElementById('cont-btn').style.display = 'none';
-            document.getElementById('timer-display').style.display = 'block';
-            let count = 8;
-            const counter = setInterval(() => {
-                count--;
-                document.getElementById('sec').innerText = count;
-                if (count <= 0) {
-                    clearInterval(counter);
-                    document.getElementById('timer-display').style.display = 'none';
-                    document.getElementById('code-display').style.display = 'block';
-                    document.getElementById('msg').innerHTML = "Ready! Use the code below.";
-                    generate12HrCode();
-                }
-            }, 1000);
-        }
-
-        function generate12HrCode() {
-            // Har 12 ghante mein badalne wala code (Date based)
-            const now = new Date();
-            const dateStr = now.getFullYear() + "" + (now.getMonth() + 1) + "" + now.getDate();
-            const period = Math.floor(now.getHours() / 12); // 0 (AM) or 1 (PM)
-            const finalCode = "CA" + dateStr.slice(-3) + period; 
-            document.getElementById('dynamic-code').innerText = finalCode;
+        for (let i = 0; i < 20; i++) {
+            let p = document.createElement('div');
+            p.className = 'particle';
+            let size = Math.random() * 5 + 2 + 'px';
+            p.style.width = size;
+            p.style.height = size;
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = Math.random() * 5 + 5 + 's';
+            p.style.opacity = Math.random();
+            document.body.appendChild(p);
         }
     </script>
+
+    <div class="content-card">
+        <h1 class="title">BROH!</h1>
+        
+        <div class="message">
+            <p>This is coming soon...</p>
+            <p class="mt-4">
+                <span class="highlight">Open today after 8 PM</span> and one more earning app is coming. 
+                I can't give you all the information about it, but you can earn money from it.
+            </p>
+            <p class="mt-4 bg-zinc-900 p-3 rounded-xl border border-zinc-800">
+                You can earn <span class="text-green-500 font-bold">100 to 2000</span> a day by answering game questions and playing tournaments.
+            </p>
+        </div>
+
+        <p class="footer-text uppercase mt-8">Thanks a lot</p>
+    </div>
+
 </body>
 </html>
